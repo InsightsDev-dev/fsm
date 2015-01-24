@@ -117,12 +117,20 @@
 			<scope>test</scope>
 		</dependency>
 
-
 	</dependencies>
+
+	<repositories>
+		<repository>
+			<id>Cohesiva Releases</id>
+			<name>Cohesiva Releases</name>
+			<url>http://nexus.cohesiva.com:8080/nexus/content/repositories/releases</url>
+		</repository>
+	</repositories>
 
 	<scm>
 		<connection>git@github.com:daniellas/fsm.git</connection>
 		<developerConnection>git@github.com:daniellas/fsm.git</developerConnection>
 		<tag>HEAD</tag>
 	</scm>
+	
 </project>
