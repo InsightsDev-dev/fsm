@@ -121,8 +121,8 @@
 	</dependencies>
 
 	<scm>
-		<connection>scm:git:ssh://git@gitlab.cohesiva.com/daniel.las/nettle.git</connection>
-		<developerConnection>scm:git:ssh://git@gitlab.cohesiva.com/daniel.las/nettle.git</developerConnection>
+		<connection>git@github.com:daniellas/fsm.git</connection>
+		<developerConnection>git@github.com:daniellas/fsm.git</developerConnection>
 		<tag>HEAD</tag>
 	</scm>
 </project>
