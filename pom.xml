@@ -126,11 +126,18 @@
 			<url>http://nexus.cohesiva.com:8080/nexus/content/repositories/releases</url>
 		</repository>
 	</repositories>
+	
+	<distributionManagement>
+		<repository>
+			<id>cohesiva</id>
+			<url>http://nexus.cohesiva.com:8080/nexus/content/repositories/releases</url>
+		</repository>
+	</distributionManagement>
 
 	<scm>
-		<connection>git@github.com:daniellas/fsm.git</connection>
-		<developerConnection>git@github.com:daniellas/fsm.git</developerConnection>
+		<connection>scm:git:ssh://git@github.com:daniellas/fsm.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com:daniellas/fsm.git</developerConnection>
 		<tag>HEAD</tag>
 	</scm>
-	
+
 </project>
