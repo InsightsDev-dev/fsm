@@ -1,9 +1,8 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.lynx</groupId>
 	<artifactId>fsm</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<packaging>jar</packaging>
 	<name>FSM</name>
 	<url>http://maven.apache.org</url>
@@ -137,7 +136,7 @@
 	<scm>
 		<connection>scm:git:ssh://git@github.com/daniellas/fsm.git</connection>
 		<developerConnection>scm:git:ssh://git@github.com/daniellas/fsm.git</developerConnection>
-		<tag>HEAD</tag>
+		<tag>fsm-1.0.0</tag>
 	</scm>
 
 </project>
