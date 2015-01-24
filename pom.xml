@@ -135,8 +135,8 @@
 	</distributionManagement>
 
 	<scm>
-		<connection>scm:git:ssh://git@github.com/daniellas/fsm.git</connection>
-		<developerConnection>scm:git:ssh://git@github.com/daniellas/fsm.git</developerConnection>
+		<connection>scm:git:ssh://git@github.com:daniellas/fsm.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com:daniellas/fsm.git</developerConnection>
 		<tag>HEAD</tag>
 	</scm>
 
