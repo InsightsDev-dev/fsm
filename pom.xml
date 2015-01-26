@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.lynx</groupId>
 	<artifactId>fsm</artifactId>
-	<version>1.0.1</version>
+	<version>1.0.2-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>FSM</name>
 	<url>http://maven.apache.org</url>
@@ -141,7 +141,7 @@
 	<scm>
 		<connection>scm:git:ssh://git@github.com/daniellas/fsm.git</connection>
 		<developerConnection>scm:git:ssh://git@github.com/daniellas/fsm.git</developerConnection>
-		<tag>fsm-1.0.1</tag>
+		<tag>HEAD</tag>
 	</scm>
 
 </project>
