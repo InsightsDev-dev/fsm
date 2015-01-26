@@ -74,6 +74,10 @@ public abstract class StateMachine<S extends StateType, C extends StateHolder<S>
         if (resolvedTransition.getRoles() != null) {
             checkPermissions(resolvedTransition.getRoles());
         }
+        // Run action if executor is set
+        if (resolvedTransition.getBeforeAction() != null) {
+            resolvedTransition.getBeforeAction().execute(executionContext, context);
+        }
         // Validation groups are set, process validation
         if (resolvedTransition.getValidationGroups() != null) {
             validate(resolvedTransition.getValidationGroups());
@@ -127,6 +131,10 @@ public abstract class StateMachine<S extends StateType, C extends StateHolder<S>
         // Security is set, check permissions
         if (resolvedTransition.getRoles() != null) {
             checkPermissions(resolvedTransition.getRoles());
+        }
+        // Run action if executor is set
+        if (resolvedTransition.getBeforeAction() != null) {
+            resolvedTransition.getBeforeAction().execute(executionContext, context);
         }
         // Validation groups are set, process Bean validation
         if (resolvedTransition.getValidationGroups() != null) {
