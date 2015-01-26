@@ -85,8 +85,8 @@ public abstract class StateMachine<S extends StateType, C extends StateHolder<S>
         state = resolvedTransition.getEnd();
         context.setState(state);
         // Run action if executor is set
-        if (resolvedTransition.getExecutor() != null) {
-            resolvedTransition.getExecutor().execute(executionContext, context);
+        if (resolvedTransition.getAfterAction() != null) {
+            resolvedTransition.getAfterAction().execute(executionContext, context);
         }
     }
 
@@ -140,8 +140,8 @@ public abstract class StateMachine<S extends StateType, C extends StateHolder<S>
         state = resolvedTransition.getEnd();
         context.setState(state);
         // Run action if executor is set
-        if (resolvedTransition.getExecutor() != null) {
-            resolvedTransition.getExecutor().execute(executionContext, context);
+        if (resolvedTransition.getAfterAction() != null) {
+            resolvedTransition.getAfterAction().execute(executionContext, context);
         }
     }
 

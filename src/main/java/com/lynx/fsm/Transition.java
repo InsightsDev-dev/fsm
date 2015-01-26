@@ -8,7 +8,8 @@ public class Transition<S extends StateType, C extends StateHolder<S>, X> {
     String[] roles;
     ConditionChecker<S, C> condition;
     BusinessValidator<S, C> validator;
-    ActionExecutor<S, C, X> executor;
+    ActionExecutor<S, C, X> beforeAction;
+    ActionExecutor<S, C, X> afterAction;
 
     public Transition() {
     }
@@ -70,12 +71,20 @@ public class Transition<S extends StateType, C extends StateHolder<S>, X> {
         this.validator = validator;
     }
 
-    public ActionExecutor<S, C, X> getExecutor() {
-        return executor;
+    public ActionExecutor<S, C, X> getBeforeAction() {
+        return beforeAction;
     }
 
-    public void setExecutor(ActionExecutor<S, C, X> executor) {
-        this.executor = executor;
+    public void setBeforeAction(ActionExecutor<S, C, X> beforeAction) {
+        this.beforeAction = beforeAction;
+    }
+
+    public ActionExecutor<S, C, X> getAfterAction() {
+        return afterAction;
+    }
+
+    public void setAfterAction(ActionExecutor<S, C, X> afterAction) {
+        this.afterAction = afterAction;
     }
 
     @Override

@@ -74,7 +74,7 @@ public class StateMashineTest {
 
         Assert.assertNotEquals(tran1, tran2);
     }
-    
+
     @Test
     public void newProcessShouldBeInIitialState() {
         Process process = factory.create(SIMPLE_FLOW);
@@ -165,7 +165,7 @@ public class StateMashineTest {
     @Test
     public void actionShouldBeExecuted() {
         Multimap<State, Transition<State, ProcessData, Process>> transitions = Process.builder().from(State.INITIAL)
-                .to(State.FINAL).exec(new ActionExecutor<State, ProcessData, Process>() {
+                .to(State.FINAL).execAfter(new ActionExecutor<State, ProcessData, Process>() {
                     @Override
                     public void execute(Process executionContext, ProcessData context) {
                         executionContext.action();

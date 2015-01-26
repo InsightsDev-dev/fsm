@@ -53,8 +53,15 @@ public abstract class DefaultTransitionsBuilder<S extends StateType, C extends S
     }
 
     @Override
-    public TransitionsBuilder<S, C, X> exec(ActionExecutor<S, C, X> executor) {
-        transition.setExecutor(executor);
+    public TransitionsBuilder<S, C, X> execBefore(ActionExecutor<S, C, X> executor) {
+        transition.setBeforeAction(executor);
+
+        return this;
+    }
+
+    @Override
+    public TransitionsBuilder<S, C, X> execAfter(ActionExecutor<S, C, X> executor) {
+        transition.setBeforeAction(executor);
 
         return this;
     }

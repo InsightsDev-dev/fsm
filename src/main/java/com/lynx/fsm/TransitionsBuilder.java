@@ -62,14 +62,22 @@ public interface TransitionsBuilder<S extends StateType, C extends StateHolder<S
     TransitionsBuilder<S, C, X> validate(Class<?>... validationGroups);
 
     /**
+     * Add action to execute before validation passed and requested state is set
+     * in context
+     * 
+     * @param executor
+     * @return
+     */
+    TransitionsBuilder<S, C, X> execBefore(ActionExecutor<S, C, X> executor);
+
+    /**
      * Add action to execute after validation passed and requested state is set
      * in context
      * 
      * @param executor
      * @return
      */
-    TransitionsBuilder<S, C, X> exec(ActionExecutor<S, C, X> executor);
-
+    TransitionsBuilder<S, C, X> execAfter(ActionExecutor<S, C, X> executor);
     /**
      * Adds current transition to transitions map
      * 
