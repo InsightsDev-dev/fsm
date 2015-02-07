@@ -1,13 +1,15 @@
-package com.lynx.fsm;
+package com.lynx.fsm.transition;
+
+import com.lynx.fsm.ActionExecutor;
+import com.lynx.fsm.ConditionChecker;
+import com.lynx.fsm.StateHolder;
+import com.lynx.fsm.StateType;
 
 // TODO Get rid of Google libraries dependencies, implement Multimap
 public class Transition<S extends StateType, C extends StateHolder<S>, X> {
     S start;
     S end;
-    Class<?>[] validationGroups;
-    String[] roles;
     ConditionChecker<S, C> condition;
-    BusinessValidator<S, C> validator;
     ActionExecutor<S, C, X> beforeAction;
     ActionExecutor<S, C, X> afterAction;
 
@@ -39,36 +41,12 @@ public class Transition<S extends StateType, C extends StateHolder<S>, X> {
         this.end = end;
     }
 
-    public Class<?>[] getValidationGroups() {
-        return validationGroups;
-    }
-
-    public void setValidationGroups(Class<?>[] validationGroups) {
-        this.validationGroups = validationGroups;
-    }
-
-    public String[] getRoles() {
-        return roles;
-    }
-
-    public void setRoles(String[] roles) {
-        this.roles = roles;
-    }
-
     public ConditionChecker<S, C> getCondition() {
         return condition;
     }
 
     public void setCondition(ConditionChecker<S, C> condition) {
         this.condition = condition;
-    }
-
-    public BusinessValidator<S, C> getValidator() {
-        return validator;
-    }
-
-    public void setValidator(BusinessValidator<S, C> validator) {
-        this.validator = validator;
     }
 
     public ActionExecutor<S, C, X> getBeforeAction() {

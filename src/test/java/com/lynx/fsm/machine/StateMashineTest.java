@@ -1,4 +1,4 @@
-package com.lynx.fsm;
+package com.lynx.fsm.machine;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertEquals;
@@ -18,6 +18,15 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import com.google.common.collect.Multimap;
+import com.lynx.fsm.ActionExecutor;
+import com.lynx.fsm.ConditionChecker;
+import com.lynx.fsm.StateHolder;
+import com.lynx.fsm.StateType;
+import com.lynx.fsm.machine.SecuredValidatingStateMachine;
+import com.lynx.fsm.machine.StateMachineException;
+import com.lynx.fsm.transition.Transition;
+import com.lynx.fsm.transition.builder.DefaultTransitionsBuilder;
+import com.lynx.fsm.transition.builder.TransitionsBuilder;
 
 @RunWith(MockitoJUnitRunner.class)
 public class StateMashineTest {
@@ -193,7 +202,7 @@ public class StateMashineTest {
 
     }
 
-    private static class Process extends StateMachine<State, ProcessData, Process> {
+    private static class Process extends SecuredValidatingStateMachine<State, ProcessData, Process> {
 
         public void action() {
             System.out.println("Executing action");

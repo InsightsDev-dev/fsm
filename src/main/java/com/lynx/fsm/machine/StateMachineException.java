@@ -1,4 +1,4 @@
-package com.lynx.fsm;
+package com.lynx.fsm.machine;
 
 public class StateMachineException extends RuntimeException {
 

@@ -13,10 +13,4 @@ public interface Forwardable<S extends StateType> {
 	 */
 	void forward();
 
-	/**
-	 * Move to requested state
-	 * 
-	 * @param requestedState
-	 */
-	void forward(S requestedState);
 }

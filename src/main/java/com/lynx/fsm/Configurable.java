@@ -1,6 +1,7 @@
 package com.lynx.fsm;
 
 import com.google.common.collect.Multimap;
+import com.lynx.fsm.transition.Transition;
 
 /**
  * Defines configurable FSM

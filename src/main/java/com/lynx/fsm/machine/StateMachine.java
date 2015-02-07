@@ -1,8 +1,17 @@
-package com.lynx.fsm;
+package com.lynx.fsm.machine;
 
 import java.util.Collection;
 
 import com.google.common.collect.Multimap;
+import com.lynx.fsm.Configurable;
+import com.lynx.fsm.ContextHolder;
+import com.lynx.fsm.Controllable;
+import com.lynx.fsm.ExecutionContextAware;
+import com.lynx.fsm.Forwardable;
+import com.lynx.fsm.StateHolder;
+import com.lynx.fsm.StateProvider;
+import com.lynx.fsm.StateType;
+import com.lynx.fsm.transition.Transition;
 
 /**
  * Abstract state machine providing validation and configuration operations
@@ -10,15 +19,21 @@ import com.google.common.collect.Multimap;
  * @author daniel.las
  *
  * @param <S>
+ *            state type, must extend {@link StateHolder}
  * @param <C>
+ *            context type
+ * @param <X>
+ *            execution context type
  */
 public abstract class StateMachine<S extends StateType, C extends StateHolder<S>, X> implements Forwardable<S>,
-        ContextHolder<C>, BeanValidating, Secured, Configurable<S, C, X>, StateProvider<S>, ExecutionContextAware<X> {
+        Controllable<S>, ContextHolder<C>, Configurable<S, C, X>, StateProvider<S>, ExecutionContextAware<X> {
 
     S state;
     C context;
     Multimap<S, Transition<S, C, X>> transitions;
     X executionContext;
+    Collection<Transition<S, C, X>> possibleEnds = null;
+    Transition<S, C, X> resolvedTransition = null;
 
     @Override
     public void forward() {
@@ -70,20 +85,9 @@ public abstract class StateMachine<S extends StateType, C extends StateHolder<S>
         }
         // All is fine, we can validate, check permissions and move to next
         // state
-        // Security is set, check permissions
-        if (resolvedTransition.getRoles() != null) {
-            checkPermissions(resolvedTransition.getRoles());
-        }
         // Run action if executor is set
         if (resolvedTransition.getBeforeAction() != null) {
             resolvedTransition.getBeforeAction().execute(executionContext, context);
-        }
-        // Validation groups are set, process validation
-        if (resolvedTransition.getValidationGroups() != null) {
-            validate(resolvedTransition.getValidationGroups());
-        }
-        if (resolvedTransition.getValidator() != null) {
-            resolvedTransition.getValidator().validate(resolvedTransition.getEnd(), context);
         }
         // Everything passed, we are good to go,
         state = resolvedTransition.getEnd();
@@ -128,21 +132,9 @@ public abstract class StateMachine<S extends StateType, C extends StateHolder<S>
         }
         // All is fine, we can validate, check permissions and move to next
         // state
-        // Security is set, check permissions
-        if (resolvedTransition.getRoles() != null) {
-            checkPermissions(resolvedTransition.getRoles());
-        }
         // Run action if executor is set
         if (resolvedTransition.getBeforeAction() != null) {
             resolvedTransition.getBeforeAction().execute(executionContext, context);
-        }
-        // Validation groups are set, process Bean validation
-        if (resolvedTransition.getValidationGroups() != null) {
-            validate(resolvedTransition.getValidationGroups());
-        }
-        // Business validator is set, process business validation
-        if (resolvedTransition.getValidator() != null) {
-            resolvedTransition.getValidator().validate(requestedState, context);
         }
         // Everything passed, we are good to go,
         state = resolvedTransition.getEnd();
@@ -178,11 +170,5 @@ public abstract class StateMachine<S extends StateType, C extends StateHolder<S>
     public void setExecutionContext(X executionContext) {
         this.executionContext = executionContext;
     }
-
-    @Override
-    public abstract void validate(Class<?>... groups);
-
-    @Override
-    public abstract void checkPermissions(String... roles);
 
 }

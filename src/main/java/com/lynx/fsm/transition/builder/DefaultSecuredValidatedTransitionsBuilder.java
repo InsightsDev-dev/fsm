@@ -1,7 +1,13 @@
-package com.lynx.fsm;
+package com.lynx.fsm.transition.builder;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
+import com.lynx.fsm.ActionExecutor;
+import com.lynx.fsm.BusinessValidator;
+import com.lynx.fsm.ConditionChecker;
+import com.lynx.fsm.StateHolder;
+import com.lynx.fsm.StateType;
+import com.lynx.fsm.transition.Transition;
 
 /**
  * Base class for transition building. Override this class for concrete class
@@ -11,14 +17,14 @@ import com.google.common.collect.Multimap;
  * @param <S>
  * @param <C>
  */
-public abstract class DefaultTransitionsBuilder<S extends StateType, C extends StateHolder<S>, X> implements
-        TransitionsBuilder<S, C, X> {
+public class DefaultSecuredValidatedTransitionsBuilder<S extends StateType, C extends StateHolder<S>, X> extends
+        DefaultTransitionsBuilder<S, C, X> {
 
     Transition<S, C, X> transition;
     Multimap<S, Transition<S, C, X>> transitions = HashMultimap.create();
 
     @Override
-    public TransitionsBuilder<S, C, X> from(S state) {
+    public DefaultSecuredValidatedTransitionsBuilder<S, C, X> from(S state) {
         transition = new Transition<S, C, X>(state);
 
         return this;
